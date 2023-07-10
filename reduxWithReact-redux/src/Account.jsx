@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { increment as inc,decrement as dec,incrementByAmount } from "./redux/ActionCreators/accReducerActCreators";
+import { increment as inc,decrement as dec,incrementByAmount,getUserAccount } from "./redux/ActionCreators/accReducerActCreators";
 function Account(){
     const accState=useSelector((state)=>{
         return state.acc;
@@ -21,12 +21,19 @@ function Account(){
     function decrement(){
         dispatch(dec())
     }
+    function initilizeUser(){
+        dispatch(getUserAccount(1))
+    }
     console.log('account ','called');
     return(
         <div style={{textAlign:'center'}}>
         {console.log('account-rerender')}
         <h1>Account</h1>
-        <h3>Ammount: ${accState.ammount}</h3>
+        <h3>Ammount:
+          {accState.pending?'Loading...':
+          accState.error?accState.error:accState.ammount}
+        </h3>
+        <button onClick={initilizeUser}>initilize user</button><br/><br/>
         <button onClick={increment}>increment+</button>&nbsp;
         <button onClick={decrement}>Decrement -</button><br /><br></br>
             <form onSubmit={handleIncrementByValue}>
