@@ -13,7 +13,10 @@ function App(){
     <div>
     {console.log('App-rerender')}
       <h1>App</h1>
-      <h4>Cuurent Ammount:{accState.ammount}</h4> 
+      <h4>Cuurent Ammount:
+      {accState.pending?'Loading...':
+          accState.error?accState.error:accState.ammount}
+      </h4> 
       <h4>Total Bonous:{bonusState.points}</h4> 
       <hr />
       <Account></Account>
