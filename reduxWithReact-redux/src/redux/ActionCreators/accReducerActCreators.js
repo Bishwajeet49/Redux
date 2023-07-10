@@ -7,6 +7,7 @@ import {
     getAccUserRejected
 } 
 from '../Actions/accountReducerActions';
+import axios from 'axios';
 export function increment(){
     //returning the action
     return {type:inc}
